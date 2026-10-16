@@ -25,3 +25,19 @@ stages:
             backendAzureRmStorageAccountName: 'paglabackend2'
             backendAzureRmContainerName: 'newcontainer'
             backendAzureRmKey: 'terraform.tfstate'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'validate'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            environmentServiceNameAzureRM: 'IacConnection2'
+            environmentAzureRmOverrideSubscriptionID: '73c9b1d1-79bb-4bf7-8b46-db211fe52d6f'
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'apply'
+            environmentServiceNameAzureRM: 'IacConnection2'
+            environmentAzureRmOverrideSubscriptionID: '73c9b1d1-79bb-4bf7-8b46-db211fe52d6f'
